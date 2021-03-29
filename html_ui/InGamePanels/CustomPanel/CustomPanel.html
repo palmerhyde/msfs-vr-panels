@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="/SCSS/common.css" />
+    <link rel="stylesheet" href="CustomPanel.css?foo=123" />
+
+    <script type="text/javascript" src="/JS/coherent.js"></script>
+    <script type="text/javascript" src="/JS/common.js"></script>
+    <script type="text/javascript" src="/JS/dataStorage.js"></script>
+    <script type="text/javascript" src="/JS/buttons.js"></script>
+    <script type="text/javascript" src="/JS/Services/ToolBarPanels.js"></script>
+    <script type="text/javascript" src="/JS/simvar.js"></script>
+    <script type="text/javascript" src="/Pages/VCockpit/Instruments/Shared/Utils/DataReadManager.js"></script>
+    <script type="text/javascript" src="/Pages/VCockpit/Instruments/Shared/BaseInstrument.js"></script>
+
+    <link rel="import" href="/templates/NewPushButton/NewPushButton.html" />
+    <link rel="import" href="/templates/ToggleButton/toggleButton.html" />
+    <link rel="import" href="/templates/tabMenu/tabMenu.html" />
+    <link rel="import" href="/templates/ingameUi/ingameUi.html" />
+    <link rel="import" href="/templates/ingameUiHeader/ingameUiHeader.html" />
+    <link rel="import" href="/templates/NewListButton/NewListButton.html" />
+
+    <script type="text/javascript" src="/JS/debug.js"></script>
+    <script type="text/javascript" src="CustomPanel.js"></script>
+</head>
+
+<body class="border-box">
+    <ingamepanel-custom url="http://www.example.com">
+        <ingame-ui id="CustomPanel" panel-id="PANEL_CUSTOM_PANEL" title="" class="ingameUiFrame panelInvisible" content-fit="true" min-width="160" min-height="90">
+            <section id="MainDisplay">
+                <div id="ComActiveFreq" navigation="false" class="radio">
+                    COM 1 Active
+                </div>
+                <div id="RadioSwap" navigation="true" class="button">
+                    Flip COM
+                </div>
+                <div id="ComStandByFreq" navigation="false" class="radio">
+                    COM 1 Standby
+                </div>
+                <new-push-button id="RadioFlip" title="Flip COM" eventOnValidate="AP_COM1_SWAP_CLICKED"> </new-push-button>
+            </section>
+        </ingame-ui>
+    </ingamepanel-custom>
+</body>
+</html>
