@@ -1,11 +1,3 @@
-class PanelListener extends ViewListener.ViewListener {
-}
-
-function RegisterPanelListener(callback) {
-    // TODO: Why does this need to be called "JS_LISTENER_ATC"?
-    return RegisterViewListenerT("JS_LISTENER_ATC", callback, PanelListener);
-}
-
 class IngamePanelCustomPanel extends BaseInstrument {
     constructor() {
         console.log('constructor()');
@@ -93,15 +85,9 @@ class IngamePanelCustomPanel extends BaseInstrument {
         this.ingameUi = this.querySelector('ingame-ui');
         this.comActiveFreq = document.getElementById("ComActiveFreq");
         this.comStandByFreq = document.getElementById("ComStandByFreq");
-        
-        this.PanelListener = RegisterPanelListener(() => {
-            document.getElementById("RadioSwap").addEventListener('mousedown', () => {
-                console.log('RadioSwap');
-                console.log(this.getActiveComFreq());
-                console.log(this.getStandbyComFreq());
-                this.comActiveFreq.textContent = this.getActiveComFreq();
-                this.comStandByFreq.textContent = this.getStandbyComFreq();
-            });
+        document.getElementById("RadioSwap").addEventListener('mousedown', () => {
+            console.log('RadioSwap');
+            this.toggleComFreq()
         });
     }
     Update() {
@@ -120,6 +106,9 @@ class IngamePanelCustomPanel extends BaseInstrument {
     }
     getStandbyComFreq() {
         return this.frequency3DigitsFormat(SimVar.GetSimVarValue("COM STANDBY FREQUENCY:1", "MHz"));
+    }
+    toggleComFreq() {
+        SimVar.SetSimVarValue("K:COM_STBY_RADIO_SWAP", "number", 0);
     }
     frequency3DigitsFormat(_num) {
         var freq = Math.round(_num * 1000 - 0.1) / 1000;

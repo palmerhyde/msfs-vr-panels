@@ -10,6 +10,7 @@ ingame-ui#CustomPanel {
   align-items: stretch !important;
 }
 
+
 .button{
   color: black;
   display: flex;
@@ -24,8 +25,16 @@ ingame-ui#CustomPanel {
   background: white; 
 }
 
+@font-face {
+  font-family: "Alarm-Clock";
+  src: url("/Pages/VCockpit/Instruments/Shared/Fonts/Quartz.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal; }
+
 .radio{
-  color: red;
+  font-family: Alarm-Clock;
+  font-size: 50px;
+  color: orangered;;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
