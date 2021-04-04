@@ -1,4 +1,4 @@
-class IngamePanelCustomPanel extends BaseInstrument {
+class IngamePanelCustomPanel extends NavSystem {
     constructor() {
         console.log('constructor()');
         super(...arguments);
@@ -17,6 +17,8 @@ class IngamePanelCustomPanel extends BaseInstrument {
             this.debugEnabled = true;
             this.comActiveFreq = null;
             this.comStandByFreq = null;
+            this.navActiveFreq = null;
+            this.navStandByFreq = null;
             this.startTime = Date.now();
         }
         catch (e) {
@@ -84,15 +86,28 @@ class IngamePanelCustomPanel extends BaseInstrument {
         var self = this;
         this.ingameUi = this.querySelector('ingame-ui');
         this.comActiveFreq = document.getElementById("ComActiveFreq");
-        this.comStandByFreq = document.getElementById("ComStandByFreq");
-        document.getElementById("RadioSwap").addEventListener('mousedown', () => {
-            console.log('RadioSwap');
+        this.comStandByFreq = document.getElementById("ComStandbyFreq");
+        this.navActiveFreq = document.getElementById("NavActiveFreq");
+        this.navStandByFreq = document.getElementById("NavStandbyFreq");
+        
+        document.getElementById("ComActiveButton").addEventListener('mousedown', () => {
+            console.log('COM Swap');
             this.toggleComFreq()
+            //console.log('flight plan:', this.currFlightPlan)
         });
+
+        document.getElementById("NavActiveButton").addEventListener('mousedown', () => {
+            console.log('Nav Swap');
+            this.toggleNavFreq()
+        })  
     }
     Update() {
-        this.comActiveFreq.textContent = this.getActiveComFreq();
-        this.comStandByFreq.textContent = this.getStandbyComFreq();
+        super.Update()
+        // These properties are inherited from NavSystem
+        this.comActiveFreq.innerHTML = this.GetComActiveFreq();
+        this.comStandByFreq.innerHTML = this.GetComStandbyFreq();
+        this.navActiveFreq.innerHTML = this.GetNavActiveFreq();
+        this.navStandByFreq.innerHTML = this.GetNavStandbyFreq();
     }
     initialize() {
         console.log('initalize()')
@@ -101,22 +116,30 @@ class IngamePanelCustomPanel extends BaseInstrument {
         super.disconnectedCallback();
     }
     // Copy of KX155A.js The plan is to inherit from here instead.
-    getActiveComFreq() {
-        return this.frequency3DigitsFormat(SimVar.GetSimVarValue("COM ACTIVE FREQUENCY:1", "MHz"));
-    }
-    getStandbyComFreq() {
-        return this.frequency3DigitsFormat(SimVar.GetSimVarValue("COM STANDBY FREQUENCY:1", "MHz"));
-    }
+    //getActiveComFreq() {
+    //    return this.frequency3DigitsFormat(SimVar.GetSimVarValue("COM ACTIVE FREQUENCY:1", "MHz"));
+    //}
+    //getStandbyComFreq() {
+    //    return this.frequency3DigitsFormat(SimVar.GetSimVarValue("COM STANDBY FREQUENCY:1", "MHz"));
+    //}
     toggleComFreq() {
         SimVar.SetSimVarValue("K:COM_STBY_RADIO_SWAP", "number", 0);
     }
-    frequency3DigitsFormat(_num) {
-        var freq = Math.round(_num * 1000 - 0.1) / 1000;
-        return freq.toFixed(3);
+    toggleNavFreq() {
+        SimVar.SetSimVarValue("K:NAV1_RADIO_SWAP", "number", 0);
     }
+    //frequency3DigitsFormat(_num) {
+    //    var freq = Math.round(_num * 1000 - 0.1) / 1000;
+    //    return freq.toFixed(3);
+    //}
 }
 
 // Monkey Patch to bypass loading instruments
 BaseInstrument.allInstrumentsLoaded = true;
 window.customElements.define("ingamepanel-custom", IngamePanelCustomPanel);
 checkAutoload();
+
+
+
+
+// Hack deobfuscate

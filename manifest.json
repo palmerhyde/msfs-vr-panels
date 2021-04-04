@@ -11,13 +11,17 @@
     {
       "name": "asobo-vcockpits-core",
       "package_version": "0.1.12"
+    },
+    {
+      "name": "pms50-gtn750-base",
+      "package_version": "1.0.2"
     }
   ],
   "content_type": "",
-  "title": "VFR Map for VR",
-  "manufacturer": "Christian1984",
-  "creator": "Christian1984",
-  "package_version": "1.0.1",
+  "title": "GTN750 For VR",
+  "manufacturer": "N666OB",
+  "creator": "Liam Molloy",
+  "package_version": "6.6.6",
   "minimum_game_version": "1.8.3",
   "release_notes": {
     "neutral": {

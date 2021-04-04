@@ -23,6 +23,37 @@
     <link rel="import" href="/templates/ingameUiHeader/ingameUiHeader.html" />
     <link rel="import" href="/templates/NewListButton/NewListButton.html" />
 
+    <!-- G750 dependencies -->
+    <script type="text/javascript" src="/JS/SimPlane.js"></script>
+    <script type="text/javascript" src="/Pages/VCockpit/Instruments/NavSystems/Shared/NavSystem.js?cache=a"></script>
+    <script type="text/javascript" src="/Pages/VCockpit/Instruments/NavSystems/Shared/NavSystemTouch.js"></script>
+    <script type="text/javascript" src="/Pages/VCockpit/Instruments/Shared/FlightElements/FlightPlanManager.js"></script>
+    <script type="text/javascript" src="/Pages/VCockpit/Instruments/NavSystems/Shared/CommonPFD_MFD.js"></script>
+    <script type="text/javascript" src="/Pms50/gtn750/Pages/VCockpit/Instruments/NavSystems/GPS/GTN750/js/Keyboards_base.js"></script>
+    <script type="text/javascript" src="/Pms50/gtn750/Pages/VCockpit/Instruments/NavSystems/GPS/GTN750/js/Keyboards.js"></script>
+    <script type="text/javascript" src="/Pms50/gtn750/Pages/VCockpit/Instruments/NavSystems/GPS/GTN750/js/RadioPart_base.js"></script>
+    <script type="text/javascript" src="/Pms50/gtn750/Pages/VCockpit/Instruments/NavSystems/GPS/GTN750/js/RadioPart.js"></script>
+    <script type="text/javascript" src="/Pms50/gtn750/Pages/VCockpit/Instruments/NavSystems/GPS/GTN750/js/Waypoint_base.js"></script>
+    <script type="text/javascript" src="/Pms50/gtn750/Pages/VCockpit/Instruments/NavSystems/GPS/GTN750/js/Waypoint.js"></script>
+    <script type="text/javascript" src="/Pms50/gtn750/Pages/VCockpit/Instruments/NavSystems/GPS/GTN750/js/FlightPlan_base.js"></script>
+    <script type="text/javascript" src="/Pms50/gtn750/Pages/VCockpit/Instruments/NavSystems/GPS/GTN750/js/FlightPlan.js"></script>
+    <script type="text/javascript" src="/Pms50/gtn750/Pages/VCockpit/Instruments/NavSystems/GPS/GTN750/js/Procedures_base.js"></script>
+    <script type="text/javascript" src="/Pms50/gtn750/Pages/VCockpit/Instruments/NavSystems/GPS/GTN750/js/Procedures.js"></script>
+    <script type="text/javascript" src="/Pms50/gtn750/Pages/VCockpit/Instruments/NavSystems/GPS/GTN750/js/DirectTo_base.js"></script>
+    <script type="text/javascript" src="/Pms50/gtn750/Pages/VCockpit/Instruments/NavSystems/GPS/GTN750/js/DirectTo.js"></script>
+    <script type="text/javascript" src="/Pms50/gtn750/Pages/VCockpit/Instruments/NavSystems/GPS/GTN750/js/Map_base.js"></script>
+    <script type="text/javascript" src="/Pms50/gtn750/Pages/VCockpit/Instruments/NavSystems/GPS/GTN750/js/Map.js"></script>
+    <script type="text/javascript" src="/Pms50/gtn750/Pages/VCockpit/Instruments/NavSystems/GPS/GTN750/js/Nearest_base.js"></script>
+    <script type="text/javascript" src="/Pms50/gtn750/Pages/VCockpit/Instruments/NavSystems/GPS/GTN750/js/Nearest.js"></script>
+    <script type="text/javascript" src="/Pms50/gtn750/Pages/VCockpit/Instruments/NavSystems/GPS/GTN750/js/Message_base.js"></script>
+    <script type="text/javascript" src="/Pms50/gtn750/Pages/VCockpit/Instruments/NavSystems/GPS/GTN750/js/Message.js"></script>
+    <script type="text/javascript" src="/Pms50/gtn750/Pages/VCockpit/Instruments/NavSystems/GPS/GTN750/js/Utilities_base.js"></script>
+    <script type="text/javascript" src="/Pms50/gtn750/Pages/VCockpit/Instruments/NavSystems/GPS/GTN750/js/Utilities.js"></script>
+    <script type="text/javascript" src="/Pms50/gtn750/Pages/VCockpit/Instruments/NavSystems/GPS/GTN750/js/GTN750_base.js"></script>
+    <script type="text/javascript" src="/Pms50/gtn750/Pages/VCockpit/Instruments/NavSystems/GPS/GTN750/js/GTN750.js"></script>
+    <script type="text/javascript" src="/Pms50/gtn750/Pages/VCockpit/Instruments/NavSystems/GPS/GTN750_FULL/GTN750_FULL.js"></script>
+
+    <!-- <link rel="import" href="Liam.html" /> -->
     <script type="text/javascript" src="/JS/debug.js"></script>
     <script type="text/javascript" src="CustomPanel.js"></script>
 </head>
@@ -30,17 +61,91 @@
 <body class="border-box">
     <ingamepanel-custom url="http://www.example.com">
         <ingame-ui id="CustomPanel" panel-id="PANEL_CUSTOM_PANEL" title="" class="ingameUiFrame panelInvisible" content-fit="true" min-width="160" min-height="90">
-            <section id="MainDisplay">
-                <div id="ComActiveFreq" navigation="false" class="radio">
-                    COM 1 Active
+            <div id="Electricity" state="on">
+                <div id="Gtn750_Container">
+                    <g750-liam url="http://www.example.com">
+                        <div id="Mainframe">
+                            <div id="RadioPart">
+                                <div id="RadioPartLeft">
+                                    <div><img src="/Pms50/gtn750/Pages/VCockpit/Instruments/NavSystems/GPS/GTN750/Images/com_arrow_icon.png"></div>
+                                    <div>Com Vol</div>
+                                    <div>-</div>
+                                    <div>Psh Sq</div>
+                                </div>
+                                <div id="RadioPartRight">
+                                    <div class="buttonsContainer">
+                                        <div id="ComActiveButton" class="gradientButton">
+                                            <div class="FreqTitle">COM</div>
+                                            <div id="ComActiveFreq" class="ActiveFreq">888<span class="FrecDecimalDot">.</span><span class="FrecDecimals">888</span></div>
+                                            <div id="ComActiveFreqName" class="FreqName">PARIS ACC</div>
+                                        </div>
+                                        <div class="comStdbySep"><img src="/Pms50/gtn750/Pages/VCockpit/Instruments/NavSystems/GPS/GTN750/Images/freq_active_stby_sep.png"></div>
+                                        <div id="ComStandbyButton" class="gradientButton">
+                                            <div class="FreqTitle">STBY</div>
+                                            <div id="ComStandbyFreq" class="StandbyFreq">888<span class="FrecDecimalDot">.</span><span class="FrecDecimals">888</span></div>
+                                            <div id="ComStandyFreqName" class="FreqName">EGHH DIR</div>
+                                        </div>
+                                    </div>                
+                                    <div class="buttonsContainer">
+                                        <div id="AudioPanelButton" class="gradientButton">Audio<br/>Panel</div>
+                                        <div class="comNavSep"><img src="/Pms50/gtn750/Pages/VCockpit/Instruments/NavSystems/GPS/GTN750/Images/com_nav_sep.png"></div>
+                                        <div id="IntercomButton" class="gradientButton">Intercom</div>
+                                    </div>                
+                                    <div class="buttonsContainer">
+                                        <div id="MicButton" class="gradientButton">
+                                            <div>MIC</div>
+                                            <div id="MicMode">Split</div>
+                                            <div id="MicIndicators">
+                                                <div id="Mic1">1</div>
+                                                <div id="Mic2">2</div>
+                                            </div>
+                                        </div>
+                                        <div class="comNavSep"><img src="/Pms50/gtn750/Pages/VCockpit/Instruments/NavSystems/GPS/GTN750/Images/com_nav_sep.png"></div>
+                                        <div id="MonButton" class="gradientButton">
+                                            <div>MON</div>
+                                            <div id="MonMode">1/PA</div>
+                                            <div id="MonIndicators">
+                                                <div id="Mon1">1</div>
+                                                <div id="Mon2">2</div>
+                                            </div>
+                                        </div>
+                                    </div>                
+                                    <div class="buttonsContainer">
+                                        <div id="XPDRIdentButton" class="gradientButton">
+                                            <div id="XPDRIdentLine1">
+                                                <div>XPDR</div>
+                                                <div id="XPDRIdFlag">ID</div>
+                                            </div>
+                                            <div id="XPDRIdentLine2">IDENT</div>
+                                        </div>
+                                        <div class="comNavSep"><img src="/Pms50/gtn750/Pages/VCockpit/Instruments/NavSystems/GPS/GTN750/Images/com_nav_sep.png"></div>
+                                        <div id="XPDRValueButton" class="gradientButton">
+                                            <div id="XPDRValue">1200</div>
+                                            <div id="XPDRValueLine2">
+                                                <div id="XPDRMode">ON</div>
+                                                <div id="XPDRReportFlag">R</div>
+                                            </div>
+                                        </div>
+                                    </div>                
+                                    <div class="buttonsContainer">
+                                        <div id="NavActiveButton" class="gradientButton">
+                                            <div class="FreqTitle">NAV</div>
+                                            <div id="NavActiveFreq" class="ActiveFreq">888<span class="FrecDecimalDot">.</span><span class="FrecDecimals">888</span></div>
+                                            <div id="NavActiveFreqName" class="FreqName">PARIS ACC</div>
+                                        </div>
+                                        <div class="comStdbySep"><img src="/Pms50/gtn750/Pages/VCockpit/Instruments/NavSystems/GPS/GTN750/Images/freq_active_stby_sep.png"></div>
+                                        <div id="NavStandbyButton" class="gradientButton">
+                                            <div class="FreqTitle">STBY</div>
+                                            <div id="NavStandbyFreq" class="StandbyFreq">888<span class="FrecDecimalDot">.</span><span class="FrecDecimals">888</span></div>
+                                            <div id="NavStandyFreqName" class="FreqName">EGHH DIR</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </g750-liam>
                 </div>
-                <div id="RadioSwap" navigation="true" class="button">
-                    Flip COM
-                </div>
-                <div id="ComStandByFreq" navigation="false" class="radio">
-                    COM 1 Standby
-                </div>
-            </section>
+            </div>
         </ingame-ui>
     </ingamepanel-custom>
 </body>
