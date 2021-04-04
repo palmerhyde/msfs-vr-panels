@@ -1,4 +1,31 @@
-﻿/** This mixin makes a single line element fit exactly on the Roboto font for easier integration. */
+﻿@font-face {
+  font-family: "Alarm-Clock";
+  src: url("/Pages/VCockpit/Instruments/Shared/Fonts/Quartz.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("/Fonts/RobotoMono-Medium.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal; 
+}
+
+@font-face {
+  font-family: "Roboto-Light";
+  src: url("/Fonts/RobotoMono-Light.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal; 
+}
+
+@font-face {
+  font-family: "Roboto-Bold";
+  src: url("/Fonts/RobotoMono-Bold.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal; 
+}
+
 ingame-ui#CustomPanel {
   position: relative;
   display:flex;
@@ -9,6 +36,7 @@ ingame-ui#CustomPanel {
   width: 100% !important;
   align-items: stretch !important;
 }
+
 
 .button{
   color: black;
@@ -25,11 +53,326 @@ ingame-ui#CustomPanel {
 }
 
 .radio{
-  color: red;
+  font-family: Alarm-Clock;
+  font-size: 50px;
+  color: orangered;;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   text-align: center;
   box-sizing: border-box;
   flex: 0; 
+}
+
+#Electricity {
+  width: 100%;
+  height: 100%;
+}
+#Electricity[state=off] {
+  display: none;
+}
+
+#Mainframe {
+  width: 100%;
+  height: 100vh;
+  font-family: Roboto;
+  font-size: 2.5vh;
+  line-height: 3vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  color: #a7aec7;
+  background-color: black;
+}
+
+#RadioPart {
+  width: 100%;
+  height: 17.5vh;
+  background: linear-gradient(black, #333d47);
+  border: solid #a8c6c6;
+  border-width: 0 0 0.5vh 0;
+  display: flex;
+  overflow: hidden;
+}
+
+.buttonsContainer {
+  border: solid #3b4753;
+  border-width: 0.3vh;
+  border-radius: 1vh;
+  background-color: black;
+  padding: 0.3vh;
+  /* margin: 2.5vh 1.5vh 1.5vh 1.5vh; */
+}
+
+.buttonsContainer.rounded {
+  border-radius: 50%;
+}
+
+.buttonsContainer.noborder {
+  border: none;
+}
+
+/* Radio part */
+#RadioPartLeft {
+  width: 6%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  font-size: 2vh;
+  line-height: 2vh;
+  text-align: center;
+}
+#RadioPartRight {
+  flex-grow: 1;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+#RadioPartRight .buttonsContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  position: relative;
+}
+
+#RadioPartRight .gradientButton {
+  font-size: 2.5vh;
+}
+#RadioPartRight .buttonsContainer:nth-child(1) {
+  width: 21.2%;
+}
+#RadioPartRight .buttonsContainer:nth-child(2) {
+  width: 17.7%;
+}
+#RadioPartRight .buttonsContainer:nth-child(3) {
+  width: 14.4%;
+}
+#RadioPartRight .buttonsContainer:nth-child(4) {
+  width: 17.7%;
+}
+#RadioPartRight .buttonsContainer:nth-child(5) {
+  width: 21.2%;
+}
+#RadioPartRight #AudioPanelButton, #RadioPartRight #IntercomButton, #RadioPartRight #MicButton, #RadioPartRight #MonButton, #RadioPartRight #XPDRIdentButton, #RadioPartRight #XPDRValueButton {
+  height: 48%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+#RadioPartRight #ComActiveButton,  #RadioPartRight #ComStandbyButton, #RadioPartRight #NavActiveButton, #RadioPartRight #NavStandbyButton {
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#RadioPartRight #ComActiveButton,  #RadioPartRight #NavActiveButton {
+  overflow: visible;
+}
+#RadioPartRight #ComActiveButton .gradientButton, #RadioPartRight #NavActiveButton .gradientButton {
+  position: static;
+}
+#RadioPartRight #ComStandbyButton, #RadioPartRight #NavStandbyButton {
+  max-height: 47%;
+}
+#RadioPartRight .comStdbySep {
+  pointer-events: none;
+  width: 100%;
+  position: absolute;
+  bottom: 39%;
+  z-index: 2;
+  left: 0;
+}
+#RadioPartRight .comStdbySep img, #RadioPartRight .comNavSep img {
+  width: 98%;
+  margin-left: 1%;
+} 
+#RadioPartRight .comNavSep {
+  pointer-events: none;
+  width: 100%;
+  position: absolute;
+  bottom: 48%;
+  left: 0;
+}
+#RadioPartRight .FreqTitle, #RadioPartRight .FreqName {
+  align-self: flex-start;
+}
+#RadioPartRight .FreqName {
+  font-size: 1.5vh;
+  color: #fbfbfb;
+  padding-left: 0.8vh;
+  overflow: hidden;
+}
+#RadioPartRight .ActiveFreq, #RadioPartRight .StandbyFreq {
+  font-size: 3.6vh;
+  letter-spacing: -0.05em;
+  line-height: 2.2vh;
+}
+#RadioPartRight .ActiveFreq {
+  color: #00fb00;
+}
+#RadioPartRight .FrecDecimalDot {
+  letter-spacing: -0.15em;
+  margin-left: -0.15em;
+}
+
+#RadioPartRight #MicButton, #RadioPartRight #MonButton {
+  display:flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+#RadioPartRight #MicMode, #RadioPartRight #MonMode {
+  /* display:block; */
+  display:block;
+  color: #00fb00;
+  font-size: 3vh;
+}
+#RadioPartRight #MicIndicators, #RadioPartRight #MonIndicators {
+  /* display:flex; */
+  display: none;
+  justify-content: space-around;
+  width: 95%;
+  min-height: 60%;
+}
+#RadioPartRight #MicIndicators #Mic1, #RadioPartRight #MicIndicators #Mic2, #RadioPartRight #MonIndicators #Mon1, #RadioPartRight #MonIndicators #Mon2 {
+  background-color: #00fb00;
+  color: black;
+  width: 45%;
+  font-size: 4vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.5vh;
+}
+#RadioPartRight #XPDRIdentButton #XPDRIdentLine1 {
+  display: flex;
+  justify-content: space-between;
+  width: 95%;
+  padding-bottom: 1vh;
+}
+#RadioPartRight #XPDRIdentButton #XPDRIdFlag {
+  color: #00fb00;
+  visibility: hidden;
+}
+#RadioPartRight #XPDRIdentButton #XPDRIdFlag[state=Active] {
+  visibility: visible;
+}
+#RadioPartRight #XPDRIdentButton #XPDRIdentLine2 {
+  font-size: 3.5vh;
+}
+#RadioPartRight #XPDRValueButton {
+  justify-content: space-between;
+  color: #fbfbfb;
+}
+#RadioPartRight #XPDRValueButton[state=Active] {
+  color: #00fb00;
+}
+#RadioPartRight #XPDRValueButton #XPDRValue {
+  font-size: 4.5vh;
+  padding-top: 1vh;
+}
+#RadioPartRight #XPDRValueButton #XPDRValueLine2 {
+  display: flex;
+  justify-content: center;
+  width: 95%;
+  font-size: 3vh;
+  position: relative;
+}
+#RadioPartRight #XPDRValueButton #XPDRReportFlag {
+  font-size: 2vh;
+  position: absolute;
+  right: 2%;
+  top: -1vh;
+  visibility: hidden;
+}
+#RadioPartRight #XPDRValueButton #XPDRReportFlag[state=Active] {
+  animation: FlashVisibility 0.7s infinite;
+}
+#RadioPartRight .gradientButton[state=Selected] {
+  background: none;
+  background-color: #008989;
+}
+#RadioPartRight .gradientButton[state=Selected] .StandbyFreq {
+  color: black;
+}
+
+
+/* Transponder */
+#transponder {
+  display: none;
+  flex-direction: column;
+  align-items: flex-end;
+  padding-right: 6vh;
+  z-index: 8;
+}
+#transponder[state=Active] {
+  display: flex;
+}
+#transponder #transponder_line1 {
+  margin: 6% 0 5% 0;
+  display: flex;
+  justify-content: space-between;
+}
+#transponder #transponder_line2 {
+  display: flex;
+  justify-content: flex-end;
+}
+#transponder #transponder_line3 {
+  display: flex;
+  justify-content: space-between;
+  width: 68%;
+  margin-top: 7vh;
+}
+#transponder .buttonsContainer {
+  height: 9vh;
+  min-width: 15vh;
+}
+#transponder .gradientButton {
+  height: 100%;
+}
+#transponder #transponderTitle {
+  text-align: right;
+  font-size: 5vh;
+  color: #fbfbfb;
+  margin-top: 4.5vh;
+}
+#transponder #transponder_CodeDisplay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 7vh;
+  color: #fbfbfb;
+  font-size: 5vh;
+  line-height: 5vh;
+  text-align: center;
+  margin: 2vh 8% 1vh 8%;
+  width: 30vh;
+  background-color: #404040;
+}
+#transponder #transponder_NumberKeyboard {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  margin: 0 2% 0 8%;
+}
+#transponder #transponder_NumberKeyboard .buttonsContainer {
+  min-width: 9vh;
+  margin: 0 3vh 3vh 0;
+}
+#transponder #transponder_NumberKeyboard .gradientButton {
+  font-size: 6vh;
+}
+#transponder #transponder_Code .Writed, #transponder #transponder_Code .ToWrite {
+  background-color: none;
+  color: aqua;
+}
+#transponder #transponder_Code .Writing {
+  animation: SelectedCharKeyboardInputEdit 1s infinite;
+  min-width: 0.5vw;
+  min-height: 4vh;
+  display: inline-block;
 }
