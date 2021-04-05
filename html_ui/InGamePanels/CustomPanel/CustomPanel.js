@@ -1,6 +1,5 @@
-class IngamePanelCustomPanel extends NavSystem {
+class IngamePanelCustomPanel extends NavSystemTouch {
     constructor() {
-        console.log('constructor()');
         super(...arguments);
         try {
             if (this.debugEnabled) {
@@ -19,6 +18,8 @@ class IngamePanelCustomPanel extends NavSystem {
             this.comStandByFreq = null;
             this.navActiveFreq = null;
             this.navStandByFreq = null;
+            this.transponderValue = null;
+            this.transponderMode = null;
             this.startTime = Date.now();
         }
         catch (e) {
@@ -89,16 +90,30 @@ class IngamePanelCustomPanel extends NavSystem {
         this.comStandByFreq = document.getElementById("ComStandbyFreq");
         this.navActiveFreq = document.getElementById("NavActiveFreq");
         this.navStandByFreq = document.getElementById("NavStandbyFreq");
+        this.transponderValue = document.getElementById("XPDRValue");
+        this.transponderMode = document.getElementById("XPDRMode");
         
         document.getElementById("ComActiveButton").addEventListener('mousedown', () => {
             console.log('COM Swap');
             this.toggleComFreq()
-            //console.log('flight plan:', this.currFlightPlan)
+            let seen = [];
+            const foo = JSON.stringify(this.currFlightPlan, function(key, val) {
+                if (val != null && typeof val == "object") {
+                     if (seen.indexOf(val) >= 0) {
+                         return;
+                     }
+                     seen.push(val);
+                 }
+                 return val;
+             });
+            console.log('Flight Plan:', foo)
+            //this.playInstrumentSound("tone_NavSystemTouch_touch");
         });
 
         document.getElementById("NavActiveButton").addEventListener('mousedown', () => {
             console.log('Nav Swap');
             this.toggleNavFreq()
+            //this.playInstrumentSound("tone_NavSystemTouch_touch");
         })  
     }
     Update() {
@@ -108,6 +123,10 @@ class IngamePanelCustomPanel extends NavSystem {
         this.comStandByFreq.innerHTML = this.GetComStandbyFreq();
         this.navActiveFreq.innerHTML = this.GetNavActiveFreq();
         this.navStandByFreq.innerHTML = this.GetNavStandbyFreq();
+        
+        // TODO: investigate where transponder values are inherited from
+        this.transponderValue.textContent = this.getTransponderCode();
+        this.transponderMode.textContent = this.getTransponderMode();
     }
     initialize() {
         console.log('initalize()')
@@ -115,13 +134,27 @@ class IngamePanelCustomPanel extends NavSystem {
     disconnectedCallback() {
         super.disconnectedCallback();
     }
-    // Copy of KX155A.js The plan is to inherit from here instead.
     //getActiveComFreq() {
     //    return this.frequency3DigitsFormat(SimVar.GetSimVarValue("COM ACTIVE FREQUENCY:1", "MHz"));
     //}
     //getStandbyComFreq() {
     //    return this.frequency3DigitsFormat(SimVar.GetSimVarValue("COM STANDBY FREQUENCY:1", "MHz"));
     //}
+    getTransponderCode() {
+        return ("0000" + SimVar.GetSimVarValue("TRANSPONDER CODE:1", "number")).slice(-4);
+    }
+    getTransponderMode() {
+        switch (SimVar.GetSimVarValue("TRANSPONDER STATE:1", "number")) {
+            case 1:
+                return ('STBY');
+            case 3:
+                return ('ON');
+            case 4: 
+                return ('ALT');
+            default:
+                return ('?');
+        }
+    }
     toggleComFreq() {
         SimVar.SetSimVarValue("K:COM_STBY_RADIO_SWAP", "number", 0);
     }
@@ -138,8 +171,3 @@ class IngamePanelCustomPanel extends NavSystem {
 BaseInstrument.allInstrumentsLoaded = true;
 window.customElements.define("ingamepanel-custom", IngamePanelCustomPanel);
 checkAutoload();
-
-
-
-
-// Hack deobfuscate
