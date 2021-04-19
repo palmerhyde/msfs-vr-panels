@@ -14,8 +14,6 @@
     <script type="text/javascript" src="/Pages/VCockpit/Instruments/Shared/Utils/DataReadManager.js"></script>
     <script type="text/javascript" src="/Pages/VCockpit/Instruments/Shared/BaseInstrument.js"></script>
 
-    <!-- Load KX155A <script type="text/javascript" src="/Pages/VCockpit/Instruments/Shared/BaseInstrument.js"></script> -->
-
     <link rel="import" href="/templates/NewPushButton/NewPushButton.html" />
     <link rel="import" href="/templates/ToggleButton/toggleButton.html" />
     <link rel="import" href="/templates/tabMenu/tabMenu.html" />
@@ -68,12 +66,6 @@
                     <g750-liam url="http://www.example.com">
                         <div id="Mainframe">
                             <div id="RadioPart">
-                                <div id="RadioPartLeft">
-                                    <div><img src="/Pms50/gtn750/Pages/VCockpit/Instruments/NavSystems/GPS/GTN750/Images/com_arrow_icon.png"></div>
-                                    <div>Com Vol</div>
-                                    <div>-</div>
-                                    <div>Psh Sq</div>
-                                </div>
                                 <div id="RadioPartRight">
                                     <div class="buttonsContainer">
                                         <div id="ComActiveButton" class="gradientButton">
@@ -140,6 +132,104 @@
                                             <div class="FreqTitle">STBY</div>
                                             <div id="NavStandbyFreq" class="StandbyFreq">888<span class="FrecDecimalDot">.</span><span class="FrecDecimals">888</span></div>
                                             <div id="NavStandyFreqName" class="FreqName">EGHH DIR</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="MainPart">
+                                <div id="transponder" class="popup FullScreenBorder" state="Inactive">
+                                    <div id="transponder_line1">
+                                        <div id="transponderTitle">XPDR</div>
+                                        <div id="transponder_CodeDisplay">
+                                            <span id="transponder_Code">0123</span>
+                                        </div>
+                                        <div class="buttonsContainer">
+                                            <div id="transponder_Bksp" class="gradientButton">
+                                                <div class="title titleTopCenter">Backspace</div>
+                                                <img class="img imgBottomCenter" src="/Pms50/gtn750/Pages/VCockpit/Instruments/NavSystems/GPS/GTN750/Images/button_backspace_icon.png" />
+                                            </div>
+                                        </div>
+                                        <div class="buttonsContainer">
+                                            <div id="transponder_enter" class="gradientButton" state="Active">
+                                                <div class="title titleVertCenter2lines">Enter</div>
+                                                <div class="statusBar"></div>
+                                             </div>
+                                        </div>
+                                        <div class="buttonsContainer">
+                                            <div id="transponder_cancel" class="gradientButton" state="Active">
+                                                <div class="title titleVertCenter2lines">Cancel</div>
+                                                <div class="statusBar"></div>
+                                             </div>
+                                        </div>
+                                    </div>
+                                    <div id="transponder_line2">
+                                        <div id="transponder_NumberKeyboard">
+                                            <div class="buttonsContainer rounded">
+                                                <div id="transponder_0" class="gradientButton rounded">
+                                                    <div class="title titleVertCenter">0</div>
+                                                </div>
+                                            </div>
+                                            <div class="buttonsContainer rounded">
+                                                <div id="transponder_1" class="gradientButton rounded">
+                                                    <div class="title titleVertCenter">1</div>
+                                                </div>
+                                            </div>
+                                            <div class="buttonsContainer rounded">
+                                                <div id="transponder_2" class="gradientButton rounded">
+                                                    <div class="title titleVertCenter">2</div>
+                                                </div>
+                                            </div>
+                                            <div class="buttonsContainer rounded">
+                                                <div id="transponder_3" class="gradientButton rounded">
+                                                    <div class="title titleVertCenter">3</div>
+                                                </div>
+                                            </div>
+                                            <div class="buttonsContainer rounded">
+                                                <div id="transponder_4" class="gradientButton rounded">
+                                                    <div class="title titleVertCenter">4</div>
+                                                </div>
+                                            </div>
+                                            <div class="buttonsContainer rounded">
+                                                <div id="transponder_5" class="gradientButton rounded">
+                                                    <div class="title titleVertCenter">5</div>
+                                                </div>
+                                            </div>
+                                            <div class="buttonsContainer rounded">
+                                                <div id="transponder_6" class="gradientButton rounded">
+                                                    <div class="title titleVertCenter">6</div>
+                                                </div>
+                                            </div>
+                                            <div class="buttonsContainer rounded">
+                                                <div id="transponder_7" class="gradientButton rounded">
+                                                    <div class="title titleVertCenter">7</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="buttonsContainer">
+                                            <div id="transponder_Vfr" class="gradientButton">
+                                                <div class="title titleVertCenter">VFR</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="transponder_line3" class="groupBox">
+                                        <div class="groupBoxTitle">Mode</div>
+                                        <div class="buttonsContainer">
+                                            <div id="transponder_Stby" class="gradientButton">
+                                                <div class="title titleVertCenter">Standby</div>
+                                                <div class="statusBar"></div>
+                                             </div>
+                                        </div>
+                                        <div class="buttonsContainer">
+                                            <div id="transponder_On" class="gradientButton">
+                                                <div class="title titleVertCenter">On</div>
+                                                <div class="statusBar"></div>
+                                            </div>
+                                        </div>
+                                        <div class="buttonsContainer">
+                                            <div id="transponder_Alt" class="gradientButton" state="Active">
+                                                <div class="title titleVertCenter2lines">Altitude Reporting</div>
+                                                <div class="statusBar"></div>
+                                             </div>
                                         </div>
                                     </div>
                                 </div>

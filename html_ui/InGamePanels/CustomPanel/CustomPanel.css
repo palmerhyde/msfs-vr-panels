@@ -52,18 +52,6 @@ ingame-ui#CustomPanel {
   background: white; 
 }
 
-.radio{
-  font-family: Alarm-Clock;
-  font-size: 50px;
-  color: orangered;;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  text-align: center;
-  box-sizing: border-box;
-  flex: 0; 
-}
-
 #Electricity {
   width: 100%;
   height: 100%;
@@ -85,16 +73,6 @@ ingame-ui#CustomPanel {
   background-color: black;
 }
 
-#RadioPart {
-  width: 100%;
-  height: 17.5vh;
-  background: linear-gradient(black, #333d47);
-  border: solid #a8c6c6;
-  border-width: 0 0 0.5vh 0;
-  display: flex;
-  overflow: hidden;
-}
-
 .buttonsContainer {
   border: solid #3b4753;
   border-width: 0.3vh;
@@ -113,17 +91,17 @@ ingame-ui#CustomPanel {
 }
 
 /* Radio part */
-#RadioPartLeft {
-  width: 6%;
-  height: 100%;
+#RadioPart {
+  width: 100%;
+  height: 17.5vh;
+  background: linear-gradient(black, #333d47); 
+  /* background: hotpink; */
+  border: solid #a8c6c6;
+  border-width: 0 0 0.5vh 0;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-content: center;
-  font-size: 2vh;
-  line-height: 2vh;
-  text-align: center;
+  overflow: hidden;
 }
+
 #RadioPartRight {
   flex-grow: 1;
   height: 100%;

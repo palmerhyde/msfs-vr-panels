@@ -13,16 +13,13 @@ coming soon...
 ### 3 - Update Sim Data Panel
 coming soon...
 
-### 4 - Inherit from BaseInstrument
+### 4 - Inherit from NavSystemTouch -> NavSystem -> BaseInstrument
 coming soon...
 
-### 5 - Inherit from NavSystem
+### 5 - Page Groups and Pages
 coming soon...
 
-### 6 - Inherit from NavSystemTouch
-coming soon...
-
-### 7 - Load a HTML Template
+### 6 - Load a HTML Template
 coming soon...
 
 ## Community Help

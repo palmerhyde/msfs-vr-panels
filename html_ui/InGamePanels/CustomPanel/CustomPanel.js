@@ -92,29 +92,29 @@ class IngamePanelCustomPanel extends NavSystemTouch {
         this.navStandByFreq = document.getElementById("NavStandbyFreq");
         this.transponderValue = document.getElementById("XPDRValue");
         this.transponderMode = document.getElementById("XPDRMode");
+
+        //PageGroups
+        this.pageGroups = [
+            new NavSystemPageGroup("Home", this, [
+                // TODO: Inherit NavSystemTouch_Transponder to remove changing base files 
+                new NavSystemPage("Transponder", "transponder", new NavSystemTouch_Transponder()),
+            ])
+        ]
         
         document.getElementById("ComActiveButton").addEventListener('mousedown', () => {
             console.log('COM Swap');
             this.toggleComFreq()
-            let seen = [];
-            const foo = JSON.stringify(this.currFlightPlan, function(key, val) {
-                if (val != null && typeof val == "object") {
-                     if (seen.indexOf(val) >= 0) {
-                         return;
-                     }
-                     seen.push(val);
-                 }
-                 return val;
-             });
-            console.log('Flight Plan:', foo)
-            //this.playInstrumentSound("tone_NavSystemTouch_touch");
+            console.log(this.debugJson(this.currFlightPlan))
         });
 
         document.getElementById("NavActiveButton").addEventListener('mousedown', () => {
             console.log('Nav Swap');
             this.toggleNavFreq()
-            //this.playInstrumentSound("tone_NavSystemTouch_touch");
-        })  
+        })
+        
+        document.getElementById("XPDRValueButton").addEventListener('mousedown', () => {
+            this.SwitchToPageName("Home", "Transponder");
+        })
     }
     Update() {
         super.Update()
@@ -165,6 +165,22 @@ class IngamePanelCustomPanel extends NavSystemTouch {
     //    var freq = Math.round(_num * 1000 - 0.1) / 1000;
     //    return freq.toFixed(3);
     //}
+    onEnter() {
+    }
+    onExit() {
+    }
+    debugJson(element) {
+        let seen = [];
+        return JSON.stringify(element, function(key, val) {
+            if (val != null && typeof val == "object") {
+                 if (seen.indexOf(val) >= 0) {
+                     return;
+                 }
+                 seen.push(val);
+             }
+             return val;
+         });
+    }
 }
 
 // Monkey Patch to bypass loading instruments
